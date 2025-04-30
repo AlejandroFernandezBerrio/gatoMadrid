@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GatoMADRID - Mapa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --dark-gray: #2d2d2d;
+            --medium-gray: #3d3d3d;
+            --light-gray: #4d4d4d;
+            --highlight: #ffffff;
+            --accent: #4CAF50;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--highlight);
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: var(--dark-gray);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .header-logo h1 {
+            font-size: 20px;
+            margin: 0;
+            color: var(--highlight);
+        }
+
+        #userGreeting {
+            margin-left: auto;
+            margin-right: 20px;
+            color: #aaa;
+        }
+
+        #logoutBtn {
+            background-color: var(--medium-gray);
+            color: var(--highlight);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #logoutBtn:hover {
+            background-color: var(--light-gray);
+        }
+
+        main {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        #map {
+            flex-grow: 1;
+            background: var(--dark-gray);
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: var(--dark-gray);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .filter-btn {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--medium-gray);
+            color: var(--highlight);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--light-gray);
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        #favoritesList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .favorite-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            transition: background 0.3s;
+        }
+
+        .favorite-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        .remove-favorite {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 0 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-logo">
+                <img src="../assets/gato.png" alt="Logo GatoMADRID">
+                <h1>GatoMADRID</h1>
+            </div>
+            <div id="userGreeting"></div>
+            <button id="logoutBtn">Cerrar Sesión</button>
+        </header>
+        
+        <main>
+            <div id="map"></div>
+            
+            <div class="sidebar">
+                <div class="filters">
+                    <h3>Filtrar por:</h3>
+                    <button class="filter-btn" data-type="restaurant">🍽️ Restaurantes</button>
+                    <button class="filter-btn" data-type="nightlife">🍸 Ocio Nocturno</button>
+                    <button class="filter-btn" data-type="transport">🚆 Transporte</button>
+                </div>
+                
+                <div id="favoritesSection">
+                    <h3>Mis Favoritos</h3>
+                    <ul id="favoritesList"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/js/map.js"></script>
+</body>
+</html>
