@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GatoMADRID - Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('../assets/madrid.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .login-container {
+            background-color: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        .logo h1 {
+            margin: 10px 0 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .auth-form {
+            margin-bottom: 20px;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(50, 50, 50, 0.8);
+            color: white;
+            font-size: 14px;
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .auth-form button:hover {
+            background-color: #45a049;
+        }
+
+        .guest-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .guest-btn:hover {
+            background-color: #666;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-switch a {
+            color: #4DB8FF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="../assets/gato.png" alt="Logo GatoMADRID">
+            <h1>GatoMADRID</h1>
+        </div>
+
+        <!-- Formulario de Login -->
+        <div class="auth-form" id="loginFormContainer">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Usuario" required>
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <div class="form-switch">
+                <a href="#" id="showRegister">¿No tienes cuenta? Regístrate</a>
+            </div>
+        </div>
+
+        <!-- Formulario de Registro (inicialmente oculto) -->
+        <div class="auth-form" id="registerFormContainer" style="display: none;">
+            <h2>Crear Cuenta</h2>
+            <form id="registerForm">
+                <input type="text" id="regUsername" placeholder="Nombre de usuario" required>
+                <input type="email" id="regEmail" placeholder="Correo electrónico" required>
+                <input type="password" id="regPassword" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+            <div class="form-switch">
+                <a href="#" id="showLogin">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
+        </div>
+
+        <!-- Botón de invitado -->
+        <button id="guestBtn" class="guest-btn">Entrar como Invitado</button>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        // Script para alternar entre login y registro
+        document.addEventListener('DOMContentLoaded', () => {
+            const showRegister = document.getElementById('showRegister');
+            const showLogin = document.getElementById('showLogin');
+            const loginFormContainer = document.getElementById('loginFormContainer');
+            const registerFormContainer = document.getElementById('registerFormContainer');
+            
+            if (showRegister && showLogin) {
+                showRegister.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loginFormContainer.style.display = 'none';
+                    registerFormContainer.style.display = 'block';
+                });
+                
+                showLogin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    registerFormContainer.style.display = 'none';
+                    loginFormContainer.style.display = 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
