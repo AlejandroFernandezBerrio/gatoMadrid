@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearMarkers();
             const loadingMsg = showMapNotice(`Buscando ${typeToSpanish(type)}...`, 'info');
 
-            const response = await fetch(`http://localhost:5000/api/places?lat=${userPosition.lat}&lng=${userPosition.lng}&type=${type}&radius=1500`);
+            const response = await fetch(`https://gatomadrid.onrender.com/places?lat=${userPosition.lat}&lng=${userPosition.lng}&type=${type}&radius=1500`);
             
             if (!response.ok) {
                 const error = await response.json();
