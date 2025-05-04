@@ -2,8 +2,6 @@
 
 Aplicación web de mapas interactivos para Madrid con sistema de favoritos.
 
-## Demo
-🔗 [Ver en vivo](https://tu-usuario.github.io/gato-madrid)
 
 ## Tecnologías
 - Frontend: HTML5, CSS3, JavaScript, Leaflet.js
